@@ -1,0 +1,26 @@
+name: Selenium Grid
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: docker/setup-docker-action@v1
+
+    - name: Build and run Selenium Grid
+      run: |
+        docker-compose up -d
+        docker-compose ps
+
+    - name: Run Selenium tests
+      run: |
+        # Run your Selenium tests here using the Selenium Grid URL (e.g., http://localhost:4444/wd/hub)
+
+    - name: Clean up Selenium Grid
+      run: docker-compose down
